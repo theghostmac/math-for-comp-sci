@@ -1,2 +1,5 @@
 # math-for-comp-sci
-Mathematics for Computer Science theory and code
+Why learn Math for computer science? Because logic is the foundation of all computer programming.
+
+## Textbook title
+Discrete Mathematics for Computer Science 
