@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+type SetOperations interface {
+	addElement()
+	findIndexAndRemoveElement()
+	checkElement()
+}
+
 type Set struct {
 	x       []int
 	element int
