@@ -2,30 +2,36 @@ package main
 
 import "fmt"
 
-// addElement adds elements to a set of real integers.
-func addElement(x []int, a int) {
-	x = append(x, a)
-	fmt.Println(x)
+type Set struct {
+	x       []int
+	element int
 }
 
-func findIndexAndRemoveElement(x []int, element int) []int {
+// addElement adds elements to a set of real integers.
+func (s *Set) addElement() {
+	s.x = append(s.x, s.element)
+	fmt.Println(s.x)
+}
+
+// findIndexAndRemoveElement finds an element's index in the set and deletes it from the set.
+func (s *Set) findIndexAndRemoveElement() []int {
 	// find index.
 	index := -1
-	for i, value := range x {
-		if value == element {
+	for i, value := range s.x {
+		if value == s.element {
 			index = i
 			break
 		}
 	}
 	// delete element at that index
-	x = append(x[:index], x[index+1:]...)
-	return x
+	s.x = append(s.x[:index], s.x[index+1:]...)
+	return s.x
 }
 
 // checkElement checks if a given element is a member of the set.
-func checkElement(x []int, element int) bool {
-	for _, value := range x {
-		if value == element {
+func (s *Set) checkElement() bool {
+	for _, value := range s.x {
+		if value == s.element {
 			return true
 		}
 	}
@@ -33,16 +39,21 @@ func checkElement(x []int, element int) bool {
 }
 
 func main() {
-	setOne := []int{1, 2, 3, 4, 5}
+	setOne := Set{
+		x:       []int{1, 2, 3, 4, 5},
+		element: 10,
+	}
 	fmt.Println(setOne)
 	// addElement is used.
-	addElement(setOne, 10)
+	setOne.addElement()
 	// checkElement is used.
-	y := checkElement(setOne, 4)
-	fmt.Println(y, "is the response.")
-	z := checkElement(setOne, 12)
-	fmt.Println(z, "is a wrong response.")
-	// findIndexAndRemoveElement is used.
-	findIndexAndRemoveElement(setOne, 1)
-	fmt.Println(setOne)
+	setTwo := Set{
+		x:       setOne.x,
+		element: 4,
+	}
+	fmt.Println(setTwo)
+	setTwo.checkElement()
+	//	// findIndexAndRemoveElement is used.
+	setTwo.findIndexAndRemoveElement()
+	fmt.Println(setTwo)
 }
